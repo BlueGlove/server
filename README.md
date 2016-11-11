@@ -2,6 +2,8 @@
 
 ## Usage
 
+The API domain is `https://blueglove.herokuapp.com/`.
+
 ### GET /provider/:id/
 
 ```json
@@ -96,3 +98,27 @@ Response:
 }
 ```
 
+## Setup
+
+You need node 6.x, npm, and mongo.
+
+To run mongo:
+
+```
+$ mongod
+```
+
+To run the server:
+
+```
+$ make
+listening on port 3000
+```
+
+Then you can begin making requests:
+
+```
+$ curl localhost:3000/provider/1
+```
+
+Done!
