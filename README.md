@@ -8,7 +8,7 @@
 {
   "success": "ok",
   "provider": {
-    "id": "47294010573"
+    "id": "47294010573",
     "name": "Phillip's Pancakes"
   }
 }
