@@ -31,7 +31,10 @@ app.use(cors());
 
 var routes = require('../server/routes.js');
 app.use(route.get('/', routes.index));
-// app.use(route.get('/api/search', routes.search));
+app.use(route.get('/provider/:id/', routes.getProvider));
+app.use(route.get('/provider/:id/consumers', routes.getConsumers));
+app.use(route.get('/consumer/:id', routes.getConsumer));
+app.use(route.post('/consumer/:id', routes.setConsumer));
 
 /**
  * Listen on PORT.
