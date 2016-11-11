@@ -4,11 +4,7 @@
  */
 
 var db = require('./db');
-var wrap = require('co-monk');
-var Provider = wrap(db.get('provider'));
 
-/**
- * Expose `Provider`.
- */
+// Add provider
+// Remove provider
 
-module.exports = Provider;
