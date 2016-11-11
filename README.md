@@ -8,8 +8,8 @@
 {
   "success": "ok",
   "provider": {
-    id: "47294010573"
-    name: "Phillip's Pancakes"
+    "id": "47294010573"
+    "name": "Phillip's Pancakes"
   }
 }
 ```
@@ -20,7 +20,8 @@
 {
   "success": "ok",
   "provider": {
-    id: 
+    "id": "47294010573",
+    "name": "Phillip's Pancakes"
   },
   "consumers": [
     {
@@ -28,8 +29,8 @@
       "first_name": "Phillip",
       "last_name": "Pang",
       "created_at": "Thu Nov 10 2016 20:50:19 GMT-0800 (PST)",
-      "total_revenue": 83.23
-      "total_visits": 4
+      "total_revenue": 83.23,
+      "total_visits": 4,
       "average_order_value": 20.81
     },
     {
@@ -37,8 +38,8 @@
       "first_name": "Andy",
       "last_name": "Jiang",
       "created_at": "Thu Nov 10 2016 20:50:19 GMT-0800 (PST)",
-      "total_revenue": 83.23
-      "total_visits": 4
+      "total_revenue": 83.23,
+      "total_visits": 4,
       "average_order_value": 20.81
     }
   ]
@@ -64,8 +65,8 @@ This is to send a coupon to consumers.
   "first_name": "Phillip",
   "last_name": "Pang",
   "created_at": "Thu Nov 10 2016 20:50:19 GMT-0800 (PST)",
-  "total_revenue": 83.23
-  "total_visits": 4
+  "total_revenue": 83.23,
+  "total_visits": 4,
   "average_order_value": 20.81
 }
 ```
