@@ -1,0 +1,34 @@
+{
+  "name": "blueglove-server",
+  "version": "0.0.1",
+  "author": "Andy Jiang",
+  "main": "bin/server",
+  "keywords": [
+    "api",
+    "search",
+    "google"
+  ],
+  "description": "BlueGlove server.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BlueGlove/server.git"
+  },
+  "engines": {
+    "node": "6.0.x",
+    "npm": "^3.8.6"
+  },
+  "dependencies": {
+    "co": "^4.0.0",
+    "co-body": "^1.0.0",
+    "co-monk": "^1.0.0",
+    "co-views": "^0.2.0",
+    "koa": "^0.13.0",
+    "koa-bodyparser": "^1.2.0",
+    "koa-cors": "0.0.14",
+    "koa-logger": "^1.2.2",
+    "koa-route": "^2.2.0",
+    "request": "^2.51.0",
+    "swig": "^1.4.2",
+    "thunkify-wrap": "^1.0.4"
+  }
+}
