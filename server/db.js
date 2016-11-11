@@ -3,11 +3,20 @@
  * Module dependencies.
  */
 
-var mongo = process.env.MONGOLAB_URI || 'mongodb://localhost/blueglove';
-var monk = require('monk');
+var pg = require('pg');
+var Pool = require('pg').Pool;
+var config = require('../config');
 
 /**
- * Expose `db`.
+ * Instantiate pool.
  */
 
-module.exports = monk(mongo);;
+module.exports = new Pool({
+  user: config.pgUser,
+  password: config.pgPassword,
+  host: config.pgHost,
+  database: config.pgName,
+  max: 20, // max number of clients in pool
+  idleTimeoutMillis: 1000, // close & remove clients which have been idle > 1 second
+  ssl: true
+});
