@@ -102,7 +102,15 @@ Response:
 
 You need node 6.x, npm, and mongo.
 
-To run mongo:
+First copy the environmental variables (needed for postgres) onto it’s own `.env` file:
+
+```
+$ cp .env.example .env
+```
+
+And then fill out the `.env` file with the necessary stuff.
+
+Then, to run mongo:
 
 ```
 $ mongod
