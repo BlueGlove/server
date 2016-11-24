@@ -7,7 +7,9 @@ var dotenv = require('dotenv');
 var cfg = {};
 
 // Set env variables.
-dotenv.config({path: '.env'});
+if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+  dotenv.config({path: '.env'});
+}
 
 // HTTP Port to run our web application
 cfg.port = process.env.PORT || 3000;
