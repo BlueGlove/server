@@ -29,11 +29,10 @@ exports.add = function *add(consumerNickname) {
 
 function thunkedQuery(q) {
   return function(fn) {
-    console.log('hello');
-    db.query(q, function(err, res) {
-      console.log('goodbye');
-      db.end(fn);
-      console.log('after end');
-    });
+    db.connect(err, client, done) {
+      db.query(q, ['1'], function(err, res) {
+        done();
+      });
+    }
   }
 }
