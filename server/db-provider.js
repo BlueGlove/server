@@ -23,19 +23,13 @@ exports.add = function *add(providerOrgName, providerEmail) {
   console.log(q);
 
   var res = yield thunkedQuery(q);
-  yield thunkedEnd();
   return res;
 };
 
-
 function thunkedQuery(q) {
   return function(fn) {
-    db.query(q, fn);
-  }
-}
-
-function thunkedEnd() {
-  return function(fn) {
-    db.end(fn);
+    db.query(q, function(err, res) {
+      db.end(fn);
+    });
   }
 }
