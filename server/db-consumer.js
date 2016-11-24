@@ -17,8 +17,14 @@ exports.add = function *add(consumerNickname) {
 
   console.log(q);
 
-  var res = yield thunkedQuery(q);
-  return res;
+  // var res = yield thunkedQuery(q);
+
+  thunkedQuery(q)(function(err, res) {
+    console.log(err);
+    console.log(res);
+  });
+
+  // return res;
 };
 
 function thunkedQuery(q) {
