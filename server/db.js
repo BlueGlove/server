@@ -6,6 +6,14 @@
 var pg = require('pg');
 var Pool = require('pg').Pool;
 var config = require('../config');
+var EventEmitter = require('events');
+
+/**
+ * Increase connections.
+ */
+
+var emitter = new EventEmitter();
+emitter.setMaxListeners(0);
 
 /**
  * Instantiate pool.
