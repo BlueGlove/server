@@ -33,6 +33,6 @@ function thunkedQuery(q) {
       db.query(q, ['1'], function(err, res) {
         done();
       });
-    }
+    });
   }
 }
