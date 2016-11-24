@@ -3,8 +3,9 @@
  * Module dependencies.
  */
 
-var Provider = require('./provider');
-var Consumer = require('./consumer');
+var Provider = require('./db-provider');
+var Consumer = require('./db-consumer');
+var Visit = require('./db-visit');
 var render = require('./render');
 
 /**
@@ -16,47 +17,54 @@ module.exports.index = function *() {
 };
 
 /**
- * Get provider by ID.
+ * Create new consumer.
  *
- * /provider/:id
+ * POST
+ * /consumer/new
  */
 
-module.exports.getProvider = function *(id) {
-  // get provider by ID
-  var provider = yield Provider.findOne({ id: id });
-  if (!provider) provider = 'No provider found.';
-  this.body = provider;
+module.exports.setConsumer = function *() {
+  var name = this.request.body.name || '';
+  this.body = yield Consumer.add(name);
 };
 
 /**
- * Get consumers by provider ID.
+ * Create new provider.
  *
- * /provider/:id/consumers
+ * POST
+ * /provider/new
  */
 
-module.exports.getConsumers = function *(id) {
-  // Get all consumers who have ever "checked in" to the provider.
+module.exports.setProvider = function *() {
+  if (!this.request.body.email) return this.body = 'No email provided.';
+  var name = this.request.body.name || '';
+  var email = this.request.body.email;
+  this.body = yield Provider.add(name, email);
 };
 
 /**
- * Get consumer by ID.
+ * Create new visit.
  *
- * /consumer/:id
+ * POST
+ * /visit/new
  */
 
-module.exports.getConsumer = function *(id) {
-  var consumer = yield Consumer.findOne({ id: id });
-  if (!consumer) consumer = 'No consumer found.';
-  this.body = consumer;
+module.exports.setVisit = function *() {
+  var beaconId = this.request.body.beaconId;
+  var iosId = this.request.body.iosId;
+  var visitBeginTime = this.request.body.visitBeginTime;
+  var visitEndTime = this.request.body.visitEndTime;
+  this.body = yield Visit.add(beaconId, iosId, visitBeginTime, visitEndTime);
 };
 
-/**
- * Check a consumer into a provider.
- *
- * /consumer/:id
- */
+// when a new visitor downloads the app
+// add to consumer table
+// add to visit table
 
-module.exports.setConsumer = function *(id) {
-  // Get the consumer, get the provider, and then add that consumer into the list of providers.
-  // Save that list under the provider.
-};
+// when a new vendor comes online
+// add to provider table
+
+// when an existing visitor enters a place
+// add to visit table
+
+

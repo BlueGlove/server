@@ -3,7 +3,6 @@
 # Binaries.
 #
 
-duo = ./node_modules/.bin/duo --development --copy
 nodemon = ./node_modules/.bin/nodemon --harmony --quiet
 
 #
