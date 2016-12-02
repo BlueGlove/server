@@ -30,8 +30,10 @@ exports.add = function *add(consumerNickname) {
 function thunkedQuery(q) {
   return function(fn) {
     db.connect(function(err, client, done) {
-      db.query(q, ['1'], function(err, res) {
+      client.query(q, ['1'], function(err, res) {
         done();
+        if (err) console.error(err);
+        console.log(res);
       });
     });
   }
