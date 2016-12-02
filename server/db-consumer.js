@@ -34,6 +34,7 @@ function thunkedQuery(q) {
         done();
         if (err) console.error(err);
         console.log(res);
+        fn();
       });
     });
   }
