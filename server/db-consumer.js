@@ -14,9 +14,17 @@ exports.add = function *add(consumerNickname) {
   var consumerPK = 'cus_' + uuid.v4();
   var q = 'INSERT INTO bluegloves.consumer (consumerPK, consumerNickname) ';
   q += 'VALUES (\'' + consumerPK + '\', \'' + consumerNickname + '\');';
+
   console.log(q);
-  var res = yield thunkedQuery(q);
-  return res;
+
+  return yield thunkedQuery(q);
+
+  // thunkedQuery(q)(function(err, res) {
+  //   console.log(err);
+  //   console.log(res);
+  // });
+
+  // return res;
 };
 
 function thunkedQuery(q) {
