@@ -16,26 +16,35 @@ var emitter = new EventEmitter();
 emitter.setMaxListeners(0);
 
 /**
- * Instantiate `db` object.
+ * Expose `Db`.
  */
 
-var db = new Pool({
-  user: config.pgUser,
-  password: config.pgPassword,
-  host: config.pgHost,
-  database: config.pgName,
-  max: 20, // max number of clients in pool
-  idleTimeoutMillis: 1000, // close & remove clients which have been idle > 1 second
-  ssl: true
-});
+module.exports = Db;
 
 /**
- * Thunked query.
+ * Initialize `Db`
  */
 
-db.prototype.thunkedQuery = function(q) {
+function Db() {
+  if (!(this instanceof Db)) return new Db();
+  this.pool = new Pool({
+    user: config.pgUser,
+    password: config.pgPassword,
+    host: config.pgHost,
+    database: config.pgName,
+    max: 20, // max number of clients in pool
+    idleTimeoutMillis: 1000, // close & remove clients which have been idle > 1 second
+    ssl: true
+  });
+}
+
+/**
+ * ThunkedQuery.
+ */
+
+Db.prototype.thunkedQuery = function(q) {
   return function(fn) {
-    db.connect(function(err, client, done) {
+    Db.pool.connect(function(err, client, done) {
       client.query(q, [], function(err, res) {
         done();
         if (err) console.error(err);
@@ -45,10 +54,3 @@ db.prototype.thunkedQuery = function(q) {
     });
   }
 }
-
-/**
- * Expose `db`.
- */
-
-module.exports = db;
-
