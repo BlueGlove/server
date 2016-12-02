@@ -15,7 +15,7 @@ exports.add = function *add(consumerNickname) {
   var q = 'INSERT INTO bluegloves.consumer (consumerPK, consumerNickname) ';
   q += 'VALUES (\'' + consumerPK + '\', \'' + consumerNickname + '\');';
   console.log(q);
-  return yield db.thunkedQuery(q);
+  return yield db(q);
 };
 
 // function thunkedQuery(q) {
