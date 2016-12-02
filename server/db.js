@@ -16,10 +16,10 @@ var emitter = new EventEmitter();
 emitter.setMaxListeners(0);
 
 /**
- * Instantiate pool.
+ * Instantiate `db` object.
  */
 
-module.exports = new Pool({
+var db = new Pool({
   user: config.pgUser,
   password: config.pgPassword,
   host: config.pgHost,
@@ -28,3 +28,27 @@ module.exports = new Pool({
   idleTimeoutMillis: 1000, // close & remove clients which have been idle > 1 second
   ssl: true
 });
+
+/**
+ * Thunked query.
+ */
+
+db.prototype.thunkedQuery = function(q) {
+  return function(fn) {
+    db.connect(function(err, client, done) {
+      client.query(q, [], function(err, res) {
+        done();
+        if (err) console.error(err);
+        console.log(res);
+        fn();
+      });
+    });
+  }
+}
+
+/**
+ * Expose `db`.
+ */
+
+module.exports = db;
+
