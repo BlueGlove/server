@@ -17,16 +17,3 @@ exports.add = function *add(consumerNickname) {
   console.log(q);
   return yield db(q);
 };
-
-// function thunkedQuery(q) {
-//   return function(fn) {
-//     db.connect(function(err, client, done) {
-//       client.query(q, [], function(err, res) {
-//         done();
-//         if (err) console.error(err);
-//         console.log(res);
-//         fn();
-//       });
-//     });
-//   }
-// }
